@@ -41,7 +41,7 @@ public class EomLee implements Estimator{
 	private double EomLeeBeta(int success, int collision, int empty, double previousGama) {
 		int frameSize = success + collision + empty;
 
-		return frameSize / previousGama * collision + success;
+		return frameSize / (previousGama * collision + success);
 	}
 
 	public double getThreshold() {
