@@ -9,13 +9,9 @@ public class EomLee implements Estimator{
 	}
 
 	public int estimate(int success, int collision, int empty) throws ArithmeticException{
-		int res;
-		
 		double gama = EomLeeGamaIteration(success, collision, empty);
 		
-		res = (int) Math.ceil(gama * collision);
-		
-		return res;
+		return (int) Math.ceil(gama * collision);
 	}
 	
 	private double EomLeeGamaIteration(int success, int collision, int empty) {

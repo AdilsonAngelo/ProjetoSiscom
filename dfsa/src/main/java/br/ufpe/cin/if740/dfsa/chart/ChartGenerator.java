@@ -1,6 +1,5 @@
 package br.ufpe.cin.if740.dfsa.chart;
 
-import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,11 +72,10 @@ public class ChartGenerator {
 			writer.flush();
 			writer.close();
 			
-			Desktop.getDesktop().browse(new File(path + "index.html").toURI());
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println(e);
 		}
 		
 	}

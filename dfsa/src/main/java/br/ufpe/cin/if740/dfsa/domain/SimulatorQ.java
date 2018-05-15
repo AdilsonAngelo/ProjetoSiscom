@@ -27,12 +27,9 @@ public class SimulatorQ extends Simulator implements Runnable{
 	public void run() {
 		System.out.println("\nInitializing SimulatorQ\n");
 
-		int numTags = getNumTags();
 		List<Estimate> estimates = new LinkedList<Estimate>();
 
-		for(; numTags <= getMaxTags(); numTags += getStep()) {
-
-			System.out.println("numTag: " + numTags);
+		for(int numTags = getNumTags(); numTags <= getMaxTags(); numTags += getStep()) {
 
 			int totalEmpty = 0;
 			int totalSuccess = 0;
@@ -44,21 +41,21 @@ public class SimulatorQ extends Simulator implements Runnable{
 
 				int tagsRemaining = numTags;
 				tagsSN = new int[numTags];
-				
+
 				query();
 				int check = checkQuery();
-				
+
 				while(tagsRemaining > 0) {
 					switch (check) {
 					case 0:
 						queryAdj(false);
-						
+
 						totalEmpty++;
 						break;
 					case 1:
 						tagsSN = new int[--tagsRemaining];
 						queryRep();
-						
+
 						totalSuccess++;
 						break;
 					default:
@@ -67,7 +64,7 @@ public class SimulatorQ extends Simulator implements Runnable{
 						totalCollision++;
 						break;
 					}
-					
+
 					check = checkQuery();
 				}
 				long end = new Date().getTime();
@@ -79,7 +76,7 @@ public class SimulatorQ extends Simulator implements Runnable{
 			double avgCollision = (double) totalCollision/this.getIterations();
 			double avgTime = (double) totalTime/this.getIterations();
 
-			System.out.println("-> " + avgSuccess + " " + avgEmpty + " " + avgCollision + " " + avgTime);
+			System.out.println(this.getEstimator().getClass().getSimpleName() + " -> " + avgSuccess + " " + avgEmpty + " " + avgCollision + " " + avgTime);
 
 			estimates.add(new Estimate(avgSuccess, avgCollision, avgEmpty, avgTime));
 		}
@@ -100,7 +97,7 @@ public class SimulatorQ extends Simulator implements Runnable{
 			tagsSN[i] = randomInt(0, (int)Math.pow(2, this.q) - 1);
 		}
 	}
-	
+
 	private void queryAdj(boolean collision){
 		if(collision) {
 			qfp = Math.min(15, qfp + c);
@@ -109,7 +106,7 @@ public class SimulatorQ extends Simulator implements Runnable{
 			qfp = Math.max(0, qfp - c);
 			q = (int) Math.round(qfp);
 		}
-		
+
 		query();
 	}
 

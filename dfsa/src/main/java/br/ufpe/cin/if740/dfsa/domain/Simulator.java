@@ -78,7 +78,7 @@ public class Simulator implements Runnable{
 			double avgCollision = (double) totalCollision/iterations;
 			double avgTime = (double) totalTime/iterations;
 			
-			System.out.println("-> " + avgSuccess + " " + avgEmpty + " " + avgCollision + " " + avgTime);
+			System.out.println(this.estimator.getClass().getSimpleName() + " -> " + avgSuccess + " " + avgEmpty + " " + avgCollision + " " + avgTime);
 			
 			estimates.add(new Estimate(avgSuccess, avgCollision, avgEmpty, avgTime));
 		}
