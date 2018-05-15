@@ -86,7 +86,7 @@ public class Simulator implements Runnable{
 	}
 	
 	public static int randomInt(int min, int max) {
-		if (min >= max) throw new IllegalArgumentException("max < min");
+		if (min > max) throw new IllegalArgumentException(max + "(max) < " + min + "(min)");
 		return new Random().nextInt((max-min) + 1) + min;
 	}
 
