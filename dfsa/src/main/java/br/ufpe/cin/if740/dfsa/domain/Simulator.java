@@ -15,7 +15,7 @@ public class Simulator implements Runnable{
 	private final int iterations;
 	private final int initialFrameSize;
 	private Estimator estimator;
-	private List<Estimate> results;
+	private Result result;
 
 	public Simulator(Estimator estimator, int numTags, int step, int maxTags, int iterations, int initialFrameSize) {
 		this.estimator = estimator;
@@ -82,7 +82,7 @@ public class Simulator implements Runnable{
 			
 			estimates.add(new Estimate(avgSuccess, avgCollision, avgEmpty, avgTime));
 		}
-		this.setResults(estimates);
+		this.setResult(new Result(this.estimator.getClass().getSimpleName(), estimates));
 	}
 	
 	public static int randomInt(int min, int max) {
@@ -122,12 +122,12 @@ public class Simulator implements Runnable{
 		this.estimator = estimator;
 	}
 
-	public List<Estimate> getResults() {
-		return results;
+	public Result getResult() {
+		return result;
 	}
 
-	public void setResults(List<Estimate> results) {
-		this.results = results;
+	public void setResult(Result result) {
+		this.result = result;
 	}
-	
+
 }

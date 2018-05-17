@@ -8,24 +8,89 @@
     <title>DFSA</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 </head>
 
-<body>
+<style>
+    #loading {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: rgb(24, 116, 210);
+        z-index: 10;
+        text-align: center;
+    }
+</style>
 
-    <h2>
-        Estimadores DFSA
-    </h2>
-    <h5>
-        Alunos:
-        <ul>
-            <li>
-                Adilson Angelo (aasj2)
-            </li>
-            <li>
-                Matheus Feliciano (mbdf)
-            </li>
-        </ul>
-    </h5>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h2>
+                Estimadores DFSA
+            </h2>
+            <h5>
+                Alunos:
+                <ul>
+                    <li>
+                        Adilson Angelo (aasj2)
+                    </li>
+                    <li>
+                        Matheus Feliciano (mbdf)
+                    </li>
+                </ul>
+            </h5>
+            <div id="alert" class="alert alert-danger" role="alert" style="display: none">
+                Invalid input(s)
+            </div>
+            <form id="form" class="form">
+                <div class="row">
+                    <div class="col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="numTags">Initial tag number:</label>
+                            <input id="numTags" value="100" class="form-control" name="numTags" type="number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="step">Step:</label>
+                            <input id="step" value="100" class="form-control" name="step" type="number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="maxTags">Maximum tag number:</label>
+                            <input id="maxTags" value="1000" class="form-control" name="maxTags" type="number" />
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-lg-6">
+                        <div class="form-group" style="cursor: pointer;">
+                            <label for="iterations">Number of iterations:</label>
+                            <input id="iterations" value="2000" class="form-control" name="iterations" type="number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="initialFrameSize">Initial frame size:</label>
+                            <input id="initialFrameSize" value="64" class="form-control" name="initialFrameSize" type="number" />
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="lb">
+                            <label class="custom-control-label" for="lb">Lower Bound</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="el">
+                            <label class="custom-control-label" for="el">Eom-Lee</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="q">
+                            <label class="custom-control-label" for="q">Q</label>
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <button id="btn-submit" type="button" class="btn btn-outline-success">Run</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <canvas id="total">
 
@@ -43,7 +108,14 @@
 
     </canvas>
 
-</body>
-<script src="index.js"></script>
+    <div id="loading" style="min-height: 100%; display: none;">
+        <h1 style="color: whitesmoke">Loading...</h1>
+        <h3 style="color: whitesmoke">(It may take a while)</h3>
+        <img class="img-fluid" src="loading.gif" alt="Please wait">
+    </div>
 
+</body>
 </html>
+<script src="util.js"></script>
+<script src="SimulatorQ.js"></script>
+<script src="index.js"></script>

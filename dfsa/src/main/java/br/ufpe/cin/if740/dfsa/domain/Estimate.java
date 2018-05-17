@@ -2,67 +2,68 @@ package br.ufpe.cin.if740.dfsa.domain;
 
 public class Estimate {
 
-	private double avgTotalSlots;
-	private double avgSuccessSlots;
-	private double avgCollisionSlots;
-	private double avgEmptySlots;
-	private double avgTime;
+	private double total;
+	private double success;
+	private double collision;
+	private double empty;
+	private double time;
 	private double efficiency;
 	
-	public Estimate(double avgSuccessSlots, double avgCollisionSlots, double avgEmptySlots, double avgTime) {
-		this.avgTotalSlots = avgSuccessSlots + avgCollisionSlots + avgEmptySlots;
-		this.avgSuccessSlots = avgSuccessSlots;
-		this.avgCollisionSlots = avgCollisionSlots;
-		this.avgEmptySlots = avgEmptySlots;
-		this.avgTime = avgTime;
-		this.efficiency = avgSuccessSlots/avgTotalSlots;
+	public Estimate(double success, double collision, double empty, double time) {
+		this.total = success + collision + empty;
+		this.setSuccess(success);
+		this.setCollision(collision);
+		this.setEmpty(empty);
+		this.setTime(time);
+		this.setEfficiency(100 * (success/total));
 	}
 
-	public double getAvgTotalSlots() {
-		return avgTotalSlots;
+	public double getSuccess() {
+		return success;
 	}
-	
-	public void setAvgTotalSlots(double avgTotalSlots) {
-		this.avgTotalSlots = avgTotalSlots;
+
+	public void setSuccess(double success) {
+		this.success = success;
 	}
-	
-	public double getAvgSuccessSlots() {
-		return avgSuccessSlots;
+
+	public double getCollision() {
+		return collision;
 	}
-	
-	public void setAvgSuccessSlots(double avgSuccessSlots) {
-		this.avgSuccessSlots = avgSuccessSlots;
+
+	public void setCollision(double collision) {
+		this.collision = collision;
 	}
-	
-	public double getAvgCollisionSlots() {
-		return avgCollisionSlots;
+
+	public double getEmpty() {
+		return empty;
 	}
-	
-	public void setAvgCollisionSlots(double avgCollisionSlots) {
-		this.avgCollisionSlots = avgCollisionSlots;
+
+	public void setEmpty(double empty) {
+		this.empty = empty;
 	}
-	
-	public double getAvgEmptySlots() {
-		return avgEmptySlots;
+
+	public double getTime() {
+		return time;
 	}
-	
-	public void setAvgEmptySlots(double avgEmptySlots) {
-		this.avgEmptySlots = avgEmptySlots;
+
+	public void setTime(double time) {
+		this.time = time;
 	}
-	
-	public double getAvgTime() {
-		return avgTime;
-	}
-	
-	public void setAvgTime(double avgTime) {
-		this.avgTime = avgTime;
-	}
-	
+
 	public double getEfficiency() {
 		return efficiency;
 	}
-	
+
 	public void setEfficiency(double efficiency) {
 		this.efficiency = efficiency;
 	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
 }

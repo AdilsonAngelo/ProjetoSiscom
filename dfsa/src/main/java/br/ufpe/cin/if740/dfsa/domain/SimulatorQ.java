@@ -15,8 +15,8 @@ public class SimulatorQ extends Simulator implements Runnable{
 	private double c;
 	private int[] tagsSN;
 
-	public SimulatorQ(int numTags, int step, int maxTags, int iterations) {
-		super(EstimatorFactory.getEstimator(EstimatorType.Q_C1_G2), numTags, step, maxTags, iterations, 64);
+	public SimulatorQ(int numTags, int step, int maxTags, int iterations, int initialFrameSize) {
+		super(EstimatorFactory.getEstimator(EstimatorType.Q_C1_G2), numTags, step, maxTags, iterations, initialFrameSize);
 
 		this.qfp = 4.0;
 		this.q = (int) Math.round(this.qfp);
@@ -80,7 +80,7 @@ public class SimulatorQ extends Simulator implements Runnable{
 
 			estimates.add(new Estimate(avgSuccess, avgCollision, avgEmpty, avgTime));
 		}
-		this.setResults(estimates);
+		this.setResult(new Result(this.getEstimator().getClass().getSimpleName(), estimates));
 	}
 
 	private int checkQuery() {
