@@ -49,6 +49,16 @@ $("#btn-submit").click(function () {
             $("#btn-submit").removeAttr("disabled");
         }
     });
+
+
+    if (Notification.permission !== "granted")
+        Notification.requestPermission();
+    else {
+        var notification = new Notification('Simulator', {
+            icon: '/pasg.ico',
+            body: "Finished!",
+        });
+    }
 });
 
 function generateCharts(datasets) {

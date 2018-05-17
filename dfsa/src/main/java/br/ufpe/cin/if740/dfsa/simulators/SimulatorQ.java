@@ -55,6 +55,7 @@ public class SimulatorQ extends Simulator implements Runnable{
 						totalEmpty++;
 						break;
 					case 1:
+						tagsSN.remove(new Integer(0));
 						tagsRemaining--;
 						queryRep(tagsRemaining);
 

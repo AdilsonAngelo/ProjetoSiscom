@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
         integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/pasg.ico" />
 </head>
 
 <style>
@@ -110,12 +111,19 @@
 
     <div id="loading" style="min-height: 100%; display: none;">
         <h1 style="color: whitesmoke">Loading...</h1>
-        <h3 style="color: whitesmoke">(It may take a while)</h3>
+        <h3 style="color: whitesmoke">(It may take a whale)</h3>
         <img class="img-fluid" src="loading.gif" alt="Please wait">
     </div>
 
 </body>
+
 </html>
+<script>
+    if (!!Notification) {
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+    }
+</script>
 <script src="util.js"></script>
 <script src="SimulatorQ.js"></script>
 <script src="index.js"></script>
