@@ -5,4 +5,4 @@ Simulador de estimadores DFSA:
 - Lower Bound
 - Q: EPC Class 1 Gen 2
 
-![](./assets/view/loading.gif)
+![](assets/view/loading.gif)
