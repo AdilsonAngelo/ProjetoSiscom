@@ -4,13 +4,15 @@ var SimulatorQ = function (numTags, step, maxTags, iterations) {
 
     let qfp = 4,
         q = Math.round(qfp),
-        c = 0.1;
+        c = 0.5;
 
     for (; numTags <= maxTags; numTags += step) {
         let totalEmpty = 0,
             totalSuccess = 0,
             totalCollision = 0,
             totalTime = 0;
+
+            let totalTotal = 0;
 
         for (let i = 0; i < iterations; i++) {
             let begining = new Date().getTime();
@@ -22,7 +24,8 @@ var SimulatorQ = function (numTags, step, maxTags, iterations) {
             let zeros = checkZeros(tagsSN);
 
             while(tagsRemaining > 0){
-                if(zeros == 0){
+                if(i % 100 == 0) console.log(zeros);
+                if(zeros == 0){ 
                     let qs = queryAdj(tagsSN, false, qfp, q, c);
                     q = qs.q;
                     qfp = qs.qfp;
@@ -30,7 +33,9 @@ var SimulatorQ = function (numTags, step, maxTags, iterations) {
                     totalEmpty++;
                 } else if(zeros == 1) {
                     tagsRemaining--;
-                    tagsSN = generateArray(tagsRemaining, 0);
+                    tagsSN = tagsSN.splice(tagsSN.indexOf(0), 1);
+
+                    queryRep(tagsSN);
 
                     totalSuccess++;
                 } else {
@@ -40,6 +45,7 @@ var SimulatorQ = function (numTags, step, maxTags, iterations) {
 
                     totalCollision++;
                 }
+                totalTotal++;
                 zeros = checkZeros(tagsSN);
             }
             totalTime += new Date().getTime() - begining;
@@ -49,9 +55,11 @@ var SimulatorQ = function (numTags, step, maxTags, iterations) {
         avgEmpty = totalEmpty / iterations,
         avgCollision = totalCollision / iterations,
         avgTime = totalTime / iterations,
-        avgTotal = avgSuccess + avgCollision + avgEmpty,
+        avgTotal = totalTotal / iterations,
         efficiency = 100 * (avgSuccess / avgTotal);
         
+        console.log({total: avgTotal, efficiency: efficiency, success: avgSuccess, collision: avgCollision, empty: avgEmpty, time: avgTime });
+
         estimates.push({total: avgTotal, efficiency: efficiency, success: avgSuccess, collision: avgCollision, empty: avgEmpty, time: avgTime });
     }
     let result = { estimator: "Q", estimates: estimates };
@@ -70,7 +78,7 @@ function checkZeros(arr) {
 }
 
 function query(q, arr) {
-    for (let i = 0; i < arr.length; i++) {
+    for (let i in arr) {
         arr[i] = randomInt(0, Math.pow(2, q) - 1);
     }
 }

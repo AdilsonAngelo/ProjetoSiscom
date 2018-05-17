@@ -11,14 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application {
-	
-	static final int NUM_TAGS = 100;
-	static final int STEP = 100;
-	static final int MAX_TAGS = 1000;
-	static final int ITERATIONS = 2000;
-	static final int INITIAL_FRAME_SIZE = 64;
-
-	
 	public static void main( String[] args ) throws IOException, URISyntaxException {
 		setOutputFile();
         

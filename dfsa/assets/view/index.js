@@ -38,7 +38,7 @@ $("#btn-submit").click(function () {
         },
         success: function (data) {
             console.log(data);
-            if (q) data.push(SimulatorQ(numTags, step, maxTags, iterations));
+            // if (q) data.push(SimulatorQ(numTags, step, maxTags, iterations));
             generateCharts(data);
             $("#loading").fadeOut(1000);
             $("#btn-submit").removeAttr("disabled");

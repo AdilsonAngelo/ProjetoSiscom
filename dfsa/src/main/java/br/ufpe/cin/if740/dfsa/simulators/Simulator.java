@@ -1,10 +1,12 @@
-package br.ufpe.cin.if740.dfsa.domain;
+package br.ufpe.cin.if740.dfsa.simulators;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import br.ufpe.cin.if740.dfsa.domain.Estimate;
+import br.ufpe.cin.if740.dfsa.domain.Result;
 import br.ufpe.cin.if740.dfsa.estimators.Estimator;
 
 public class Simulator implements Runnable{

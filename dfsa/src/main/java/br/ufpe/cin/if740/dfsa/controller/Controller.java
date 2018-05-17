@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ufpe.cin.if740.dfsa.domain.Filter;
 import br.ufpe.cin.if740.dfsa.domain.Result;
-import br.ufpe.cin.if740.dfsa.domain.SimulatorWrapper;
+import br.ufpe.cin.if740.dfsa.simulators.SimulatorWrapper;
 
 @RestController
 public class Controller {
